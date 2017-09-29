@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script>
+        // TODO: Replace with the URL of your WebService app
+        var serviceUrl = 'http://localhost:7278/api/sso?systemcode=name';
+        $(function () {
+            sendRequest();
+
+        });
+
+        function sendRequest() {
+            var method = $('#method').val();
+
+            $.ajax({
+                type: 'get',
+                url: serviceUrl,
+                xhrFields: {
+                    withCredentials: true
+                }
+            }).done(function (data) {
+                $('#value1').text(data);
+            }).error(function (jqXHR, textStatus, errorThrown) {
+                $('#value1').text(jqXHR.responseText || textStatus);
+            });
+        }
+    </script>
+</head>
+<body>
+    <span id="value1"></span>
+
+</body>
+</html>
